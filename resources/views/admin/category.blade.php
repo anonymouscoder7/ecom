@@ -9,10 +9,9 @@
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-            <input type="submit" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <button type="submit"  class="btn btn-primary form-control">Save</button>
         </div>
     </form>
-
 
     <table class="table">
         <thead>
@@ -26,13 +25,11 @@
             <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
-
                 <td>
                     <a href="">Edit</a>
                     <a href="">Delete</a>
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>
