@@ -59,24 +59,42 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('admin.edit-product',compact('categories','product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->description =$request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->category_id = $request->category_id;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $filenametoimg =  time(). $filename;
+            $file->move('product',$filenametoimg);
+            $product->image = $filenametoimg;
+        }
+        $product->update();
+        return redirect('/products');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return back();
     }
 }
