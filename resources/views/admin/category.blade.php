@@ -3,10 +3,11 @@
 
 <div class="card p-4">
 
-    <form>
+    <form action="/save-category" method="post">
+        @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Category</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" class="form-control" name="category" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <button type="submit"  class="btn btn-primary form-control">Save</button>
@@ -22,14 +23,16 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($categories as $cat)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
+                <th scope="row">{{$cat->id}}</th>
+                <td>{{$cat->name}}</td>
                 <td>
-                    <a href="">Edit</a>
-                    <a href="">Delete</a>
+                    <a href="/edit-category/{{$cat->id}}">Edit</a>
+                    <a href="/delete-category/{{$cat->id}}">Delete</a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
